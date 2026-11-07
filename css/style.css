@@ -1,7 +1,7 @@
 /* =================================================================
    THOUGHTSTREAM DESIGN SYSTEM – Verdure
    Minimal, zen, distraction-free.
-   Pure typographic clarity, generous white space, 0px radius, flat.
+   Nouvelle disposition éditoriale, zéro emoji, 100% Flat, 0px radius.
    ================================================================= */
 
 /* --------------------------------------------------
@@ -33,7 +33,7 @@
   --border-medium: #D6D3D1;
   --border-strong: #A8A29E;
 
-  /* Semantic Colors */
+  /* Semantic Colors (Chips & Alerts) */
   --color-success-bg: #F0FDF4;
   --color-success-text: #65A30D;
   --color-success-border: #BBF7D0;
@@ -46,21 +46,19 @@
   --color-error-text: #DC2626;
   --color-error-border: #FECACA;
 
-  --color-info: #78716C;
-
   /* Focus Indicator Ring */
   --focus-ring: 0 0 0 2px #FAFAF9, 0 0 0 4px #78716C;
 }
 
 /* --------------------------------------------------
-   2. RESET & BASE (Distraction-free)
+   2. RESET & BASE (Zéro arrondi, Zéro ombre, Zéro emoji)
    -------------------------------------------------- */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  border-radius: 0px !important; /* Règle d'or ThoughtStream : 0px partout */
-  box-shadow: none !important;    /* Règle d'or ThoughtStream : 100% Flat */
+  border-radius: 0px !important;
+  box-shadow: none !important;
 }
 
 [hidden] {
@@ -69,6 +67,7 @@
 
 html {
   background-color: var(--surface-bg);
+  scroll-behavior: smooth;
 }
 
 body {
@@ -86,20 +85,18 @@ body {
 a {
   text-decoration: none;
   color: var(--brand-primary);
-  transition: color 0.15s ease;
+  transition: color 0.15s ease, border-color 0.15s ease;
 }
 
 a:hover {
   color: var(--brand-tertiary);
-  text-decoration: underline;
-  text-underline-offset: 4px;
 }
 
 ul {
   list-style: none;
 }
 
-/* Titres en Libre Baskerville (Chaleur littéraire) */
+/* Typographie de titres */
 h1, h2, h3, h4 {
   font-family: var(--font-serif);
   color: var(--brand-tertiary);
@@ -108,7 +105,7 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-  font-size: 38px;
+  font-size: 42px;
   line-height: 1.25;
   letter-spacing: -0.02em;
 }
@@ -124,20 +121,24 @@ h3 {
 }
 
 h4 {
-  font-size: 17px;
+  font-size: 15px;
   line-height: 1.4;
 }
 
 /* --------------------------------------------------
-   3. EN-TÊTE DE PAGE (Zen & Épuré)
+   3. EN-TÊTE DE PAGE (Disposition Éditoriale Équilibrée)
    -------------------------------------------------- */
 .header {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
+  gap: 36px;
   padding: 24px 60px;
   background-color: var(--surface-bg);
   border-bottom: 1px solid var(--border-subtle);
+  position: sticky;
+  top: 0;
+  z-index: 50;
 }
 
 .logo {
@@ -152,12 +153,9 @@ h4 {
   color: var(--brand-primary);
 }
 
-.logo:hover {
-  text-decoration: none;
-}
-
 .menu {
   display: flex;
+  justify-content: center;
   gap: 36px;
 }
 
@@ -166,14 +164,14 @@ h4 {
   font-size: 15px;
   font-weight: 500;
   color: var(--text-secondary);
-  padding: 8px 0;
+  padding: 6px 0;
+  position: relative;
 }
 
 .menu a:hover,
 .menu a.actif {
   color: var(--brand-tertiary);
-  text-decoration: underline;
-  text-underline-offset: 8px;
+  border-bottom: 2px solid var(--brand-tertiary);
 }
 
 .header-actions {
@@ -198,13 +196,12 @@ h4 {
   font-weight: 600;
   cursor: pointer;
   line-height: 1.4;
-  transition: background-color 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .bouton:hover {
   background-color: #57534E;
   border-color: #57534E !important;
-  text-decoration: none;
 }
 
 .bouton:active {
@@ -217,7 +214,7 @@ h4 {
   box-shadow: var(--focus-ring) !important;
 }
 
-/* Bouton Secondaire / Contour */
+/* Boutons Secondaires / Contour */
 .bouton-contour,
 .bouton-theme {
   display: inline-flex;
@@ -231,14 +228,13 @@ h4 {
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.15s ease;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .bouton-contour:hover,
 .bouton-theme:hover {
   background-color: var(--surface-card);
   border-color: var(--border-strong) !important;
-  text-decoration: none;
 }
 
 .bouton-contour:active,
@@ -252,12 +248,12 @@ h4 {
   box-shadow: var(--focus-ring) !important;
 }
 
-/* Bouton Destructif (Vider le panier, Retirer) */
+/* Bouton Retirer (Destructif filaire discret) */
 .bouton-retirer {
   background-color: transparent;
   color: var(--color-error-text);
   border: 1px solid var(--color-error-border) !important;
-  padding: 6px 14px;
+  padding: 5px 12px;
   font-family: var(--font-sans);
   font-size: 13px;
   font-weight: 500;
@@ -271,19 +267,21 @@ h4 {
 }
 
 /* --------------------------------------------------
-   5. SECTION HERO (Typographique & Contemplative)
+   5. NOUVELLE DISPOSITION HERO (Éditoriale & Aérée)
    -------------------------------------------------- */
 .hero {
-  max-width: 960px;
+  max-width: 1140px;
   margin: 60px auto 48px;
-  padding: 0 48px;
-  display: flex;
+  padding: 0 60px;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
   align-items: center;
-  gap: 48px;
+  gap: 60px;
 }
 
 .hero-texte {
-  flex: 1.4;
+  display: flex;
+  flex-direction: column;
 }
 
 .surtitre {
@@ -291,23 +289,23 @@ h4 {
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--brand-primary);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .hero h1 {
-  font-size: 42px;
+  font-size: 46px;
   margin-bottom: 24px;
   line-height: 1.2;
 }
 
 .intro {
-  font-size: 18px;
+  font-size: 19px;
   color: var(--text-secondary);
   line-height: 1.75;
   margin-bottom: 36px;
-  max-width: 680px; /* Recommandation ThoughtStream : max 680px pour le confort */
+  max-width: 580px;
 }
 
 .hero-boutons {
@@ -315,47 +313,50 @@ h4 {
   gap: 16px;
 }
 
+/* Bloc d'illustration géométrique sobre sans aucun emoji */
 .hero-image {
-  flex: 0.8;
   height: 280px;
   background-color: var(--surface-card);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-medium);
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
 }
 
-.hero-image::after {
-  content: "🌿";
-  font-size: 48px;
-  opacity: 0.25;
+.hero-image::before {
+  content: "";
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  border: 1px dashed var(--border-strong);
+  opacity: 0.5;
 }
 
 /* --------------------------------------------------
-   6. BOUTIQUE & CATALOGUE
+   6. NOUVELLE DISPOSITION BOUTIQUE & PANIER
    -------------------------------------------------- */
 .boutique-page {
   max-width: 1240px;
   margin: 0 auto 96px;
-  padding: 0 48px;
-  display: flex;
-  align-items: flex-start;
+  padding: 48px 60px 0;
+  display: grid;
+  grid-template-columns: 1fr 340px;
   gap: 48px;
   border-top: 1px solid var(--border-subtle);
-  padding-top: 48px;
 }
 
 .boutique {
-  flex: 3;
+  padding-right: 48px;
+  border-right: 1px solid var(--border-subtle);
 }
 
 .boutique-entete {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 24px;
-  padding-bottom: 12px;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
   border-bottom: 1px solid var(--border-subtle);
 }
 
@@ -369,11 +370,11 @@ h4 {
   color: var(--text-secondary);
 }
 
-/* Barre de recherche et filtre */
+/* Outils : barre unifiée de recherche et de sélection */
 .outils {
   display: flex;
   gap: 16px;
-  margin-bottom: 36px;
+  margin-bottom: 40px;
 }
 
 .outils input[type="search"],
@@ -408,11 +409,11 @@ h4 {
   background-color: var(--surface-bg);
 }
 
-/* Grille de cartes */
+/* Grille de cartes réagencée */
 .produits {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 28px;
 }
 
 .produit {
@@ -430,13 +431,13 @@ h4 {
 }
 
 .produit-image {
-  height: 140px;
+  height: 120px;
   margin-bottom: 16px;
   border: 1px solid var(--border-subtle);
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
-/* Chips d'état (ThoughtStream Status Chips) */
+/* Chips d'état ThoughtStream */
 .etiquette {
   display: inline-block;
   align-self: flex-start;
@@ -526,16 +527,20 @@ h4 {
   color: var(--brand-primary);
 }
 
+.lien-fiche:hover {
+  color: var(--brand-tertiary);
+}
+
 /* --------------------------------------------------
-   7. PANIER (Card Elevated ThoughtStream)
+   7. PANIER (Disposition Colonne Latérale Fixe)
    -------------------------------------------------- */
 .panier {
-  flex: 1.1;
   background-color: var(--surface-card);
   border: 1px solid var(--border-medium) !important;
   padding: 32px 24px;
   position: sticky;
-  top: 36px;
+  top: 96px;
+  align-self: flex-start;
 }
 
 .panier h2 {
@@ -557,7 +562,7 @@ h4 {
 
 .panier-lignes {
   margin-bottom: 24px;
-  max-height: 380px;
+  max-height: 420px;
   overflow-y: auto;
 }
 
@@ -591,7 +596,7 @@ h4 {
   font-weight: 700;
   color: var(--brand-tertiary);
   margin-bottom: 24px;
-  padding-top: 12px;
+  padding-top: 14px;
   border-top: 1px solid var(--border-medium);
   display: flex;
   justify-content: space-between;
@@ -602,10 +607,10 @@ h4 {
 }
 
 /* --------------------------------------------------
-   8. PAGE FICHE PLANTE (Contemplative)
+   8. PAGE FICHE PLANTE (Disposition Structurée)
    -------------------------------------------------- */
 .fiche {
-  max-width: 900px;
+  max-width: 960px;
   margin: 48px auto 96px;
   padding: 0 48px;
   width: 100%;
@@ -621,7 +626,8 @@ h4 {
 }
 
 .fiche-contenu {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
   gap: 48px;
   background-color: var(--surface-bg);
   border: 1px solid var(--border-subtle) !important;
@@ -629,19 +635,17 @@ h4 {
 }
 
 .fiche-image {
-  flex: 1;
   min-height: 340px;
   border: 1px solid var(--border-subtle);
 }
 
 .fiche-infos {
-  flex: 1.3;
   display: flex;
   flex-direction: column;
 }
 
 .fiche-infos h1 {
-  font-size: 32px;
+  font-size: 34px;
   margin-bottom: 8px;
 }
 
@@ -661,7 +665,7 @@ h4 {
 }
 
 .fiche-tags li {
-  padding: 4px 12px;
+  padding: 6px 14px;
   background-color: var(--surface-card);
   border: 1px solid var(--border-medium) !important;
   font-family: var(--font-sans);
@@ -680,7 +684,7 @@ h4 {
    9. PAGE CONTACT
    -------------------------------------------------- */
 .contact {
-  max-width: 680px; /* Standard ThoughtStream : 680px */
+  max-width: 680px;
   margin: 48px auto 96px;
   padding: 48px;
   background-color: var(--surface-bg);
@@ -756,13 +760,13 @@ h4 {
 }
 
 /* --------------------------------------------------
-   10. PIED DE PAGE (Subtil & Typographique)
+   10. PIED DE PAGE (Élégant & Typographique)
    -------------------------------------------------- */
 .footer {
   margin-top: auto;
   background-color: var(--surface-card);
   color: var(--text-secondary);
-  padding: 60px 48px 36px;
+  padding: 60px 60px 36px;
   border-top: 1px solid var(--border-subtle);
   font-size: 15px;
 }
@@ -773,25 +777,18 @@ h4 {
 }
 
 .footer-haut {
-  max-width: 1144px;
+  max-width: 1140px;
   margin: 0 auto 48px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
   gap: 48px;
-}
-
-.footer-marque {
-  flex: 2;
 }
 
 .footer-marque p {
   margin-top: 8px;
-  max-width: 300px;
+  max-width: 320px;
   color: var(--text-secondary);
   font-size: 14px;
-}
-
-.footer-colonne {
-  flex: 1;
 }
 
 .footer h4 {
@@ -817,7 +814,7 @@ h4 {
 }
 
 .footer-bas {
-  max-width: 1144px;
+  max-width: 1140px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -841,12 +838,12 @@ h4 {
 }
 
 /* --------------------------------------------------
-   11. THÈME SOMBRE (ThoughtStream Zen Inverted)
+   11. THÈME SOMBRE
    -------------------------------------------------- */
 body.sombre {
-  --surface-bg: #1C1917;        /* Warm black */
-  --surface-card: #292524;      /* Stone 800 */
-  --surface-raised: #44403C;    /* Stone 700 */
+  --surface-bg: #1C1917;
+  --surface-card: #292524;
+  --surface-raised: #44403C;
 
   --text-primary: #FAFAF9;
   --text-secondary: #D6D3D1;
@@ -917,19 +914,23 @@ body.sombre .footer {
 }
 
 /* --------------------------------------------------
-   12. RESPONSIVE (Mobiles & Tablettes)
+   12. RESPONSIVE
    -------------------------------------------------- */
-@media (max-width: 860px) {
+@media (max-width: 900px) {
   .header {
+    grid-template-columns: 1fr;
     padding: 16px 24px;
-    flex-wrap: wrap;
     gap: 16px;
   }
 
+  .menu {
+    justify-content: flex-start;
+  }
+
   .hero {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     padding: 36px 24px;
-    gap: 24px;
+    gap: 32px;
   }
 
   .hero h1 {
@@ -937,28 +938,32 @@ body.sombre .footer {
   }
 
   .hero-image {
-    width: 100%;
     height: 180px;
   }
 
   .boutique-page {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     padding: 36px 24px;
     gap: 36px;
   }
 
+  .boutique {
+    padding-right: 0;
+    border-right: none;
+  }
+
   .panier {
-    width: 100%;
     position: static;
+    width: 100%;
   }
 
   .fiche-contenu {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     padding: 24px;
   }
 
   .footer-haut {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     gap: 32px;
   }
 }
