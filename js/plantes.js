@@ -119,6 +119,3 @@ const plantes = [
 ];
 
 
-const nbPlante = document.querySelector("#nb-plantes");
-nbPlante.innerHTML = plantes.length;
-

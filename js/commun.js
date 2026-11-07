@@ -1,30 +1,36 @@
 /* =================================================
    VERDURE – commun.js
    Chargé sur toutes les pages, après plantes.js et AVANT
-   le script de la page. Ce qui est écrit ici est utilisable
-   dans accueil.js, fiche.js et contact.js.
+   le script de la page.
    ================================================= */
 
-/* ---------- Deux outils fournis, prêts à l'emploi ---------- */
+/* ---------- Outils fournis ---------- */
 
-// Formate un prix : euros(24.9) renvoie "24,90 €"
+/**
+ * Formate un prix : euros(24.9) renvoie "24,90 €"
+ * @param {number} nombre
+ * @returns {string}
+ */
 function euros(nombre) {
-  return nombre.toFixed(2).replace(".", ",") + " €";
+  return Number(nombre).toFixed(2).replace(".", ",") + " €";
 }
 
-// Lit l'id dans l'adresse de la page.
-// Sur plante.html?id=3, idDansURL() renvoie le nombre 3.
+/**
+ * Lit l'id dans l'adresse de la page.
+ * Sur plante.html?id=3, idDansURL() renvoie le nombre 3.
+ * @returns {number}
+ */
 function idDansURL() {
   return Number(new URLSearchParams(location.search).get("id"));
 }
 
-/* ---------- Votre code commun à toutes les pages ---------- */
-// Défi J03 : le bouton #bouton-theme est sur toutes les pages.
-
-// theme noir
-const theme = document.querySelector("#bouton-theme");
-const body = document.querySelector("body")
-
-theme.addEventListener("click", ()=> {
-  body.classList.toggle("sombre")
-})
+/* ---------- Code commun (Défi J03) ---------- */
+// Le bouton #bouton-theme bascule la classe 'sombre' sur <body>
+const boutonTheme = document.querySelector("#bouton-theme");
+if (boutonTheme) {
+  boutonTheme.addEventListener("click", () => {
+    document.body.classList.toggle("sombre");
+    const estSombre = document.body.classList.contains("sombre");
+    boutonTheme.textContent = estSombre ? "Mode clair" : "Thème sombre";
+  });
+}
